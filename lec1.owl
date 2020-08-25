@@ -1,0 +1,224 @@
+@prefix : <http://www.semanticweb.org/hasini/ontologies/2020/5/untitled-ontology-2#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@base <http://www.semanticweb.org/hasini/ontologies/2020/5/untitled-ontology-2> .
+
+<http://www.semanticweb.org/hasini/ontologies/2020/5/untitled-ontology-2> rdf:type owl:Ontology .
+
+#################################################################
+#    Object Properties
+#################################################################
+
+###  http://www.semanticweb.org/hasini/ontologies/2020/5/untitled-ontology-2#IsBaseOf
+:IsBaseOf rdf:type owl:ObjectProperty ;
+          rdfs:subPropertyOf :hasIngredient ;
+          owl:inverseOf :hasBase .
+
+
+###  http://www.semanticweb.org/hasini/ontologies/2020/5/untitled-ontology-2#hasBase
+:hasBase rdf:type owl:ObjectProperty ;
+         rdfs:subPropertyOf :hasIngredient .
+
+
+###  http://www.semanticweb.org/hasini/ontologies/2020/5/untitled-ontology-2#hasIngredient
+:hasIngredient rdf:type owl:ObjectProperty .
+
+
+###  http://www.semanticweb.org/hasini/ontologies/2020/5/untitled-ontology-2#hasTopping
+:hasTopping rdf:type owl:ObjectProperty ;
+            rdfs:subPropertyOf :hasIngredient .
+
+
+#################################################################
+#    Classes
+#################################################################
+
+###  http://www.semanticweb.org/hasini/ontologies/2020/5/untitled-ontology-2#AnchovyTopping
+:AnchovyTopping rdf:type owl:Class ;
+                rdfs:subClassOf :SeaFoodTopping .
+
+
+###  http://www.semanticweb.org/hasini/ontologies/2020/5/untitled-ontology-2#CaperTopping
+:CaperTopping rdf:type owl:Class ;
+              rdfs:subClassOf :VegetableTopping .
+
+
+###  http://www.semanticweb.org/hasini/ontologies/2020/5/untitled-ontology-2#CheeseTopping
+:CheeseTopping rdf:type owl:Class ;
+               rdfs:subClassOf :PizzaTopping .
+
+
+###  http://www.semanticweb.org/hasini/ontologies/2020/5/untitled-ontology-2#DeepPanBase
+:DeepPanBase rdf:type owl:Class ;
+             rdfs:subClassOf :PizzaBase ;
+             owl:disjointWith :ThinAndCrispyBase .
+
+
+###  http://www.semanticweb.org/hasini/ontologies/2020/5/untitled-ontology-2#GreenPepperTopping
+:GreenPepperTopping rdf:type owl:Class ;
+                    rdfs:subClassOf :PepperTopping .
+
+
+###  http://www.semanticweb.org/hasini/ontologies/2020/5/untitled-ontology-2#HamTopping
+:HamTopping rdf:type owl:Class ;
+            rdfs:subClassOf :MeatTopping .
+
+
+###  http://www.semanticweb.org/hasini/ontologies/2020/5/untitled-ontology-2#JalapenoPepperTopping
+:JalapenoPepperTopping rdf:type owl:Class ;
+                       rdfs:subClassOf :PepperTopping .
+
+
+###  http://www.semanticweb.org/hasini/ontologies/2020/5/untitled-ontology-2#MeatTopping
+:MeatTopping rdf:type owl:Class ;
+             rdfs:subClassOf :PizzaTopping .
+
+
+###  http://www.semanticweb.org/hasini/ontologies/2020/5/untitled-ontology-2#MozzarellaTopping
+:MozzarellaTopping rdf:type owl:Class ;
+                   rdfs:subClassOf :CheeseTopping ;
+                   owl:disjointWith :ParmazanTopping .
+
+
+###  http://www.semanticweb.org/hasini/ontologies/2020/5/untitled-ontology-2#MushroomTopping
+:MushroomTopping rdf:type owl:Class ;
+                 rdfs:subClassOf :VegetableTopping .
+###
+
+###  http://www.semanticweb.org/hasini/ontologies/2020/5/untitled-ontology-2#OliveTopping
+:OliveTopping rdf:type owl:Class ;
+              rdfs:subClassOf :VegetableTopping .
+
+
+###  http://www.semanticweb.org/hasini/ontologies/2020/5/untitled-ontology-2#OnionTopping
+:OnionTopping rdf:type owl:Class ;
+              rdfs:subClassOf :VegetableTopping .
+
+
+###  http://www.semanticweb.org/hasini/ontologies/2020/5/untitled-ontology-2#ParmazanTopping
+:ParmazanTopping rdf:type owl:Class ;
+                 rdfs:subClassOf :CheeseTopping .
+
+
+###  http://www.semanticweb.org/hasini/ontologies/2020/5/untitled-ontology-2#PepperTopping
+:PepperTopping rdf:type owl:Class ;
+               rdfs:subClassOf :VegetableTopping .
+
+
+###  http://www.semanticweb.org/hasini/ontologies/2020/5/untitled-ontology-2#PepperoniTopping
+:PepperoniTopping rdf:type owl:Class ;
+                  rdfs:subClassOf :MeatTopping .
+
+
+###  http://www.semanticweb.org/hasini/ontologies/2020/5/untitled-ontology-2#Pizza
+:Pizza rdf:type owl:Class ;
+       owl:disjointWith :PizzaBase ,
+                        :PizzaTopping .
+
+
+###  http://www.semanticweb.org/hasini/ontologies/2020/5/untitled-ontology-2#PizzaBase
+:PizzaBase rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/hasini/ontologies/2020/5/untitled-ontology-2#PizzaTopping
+:PizzaTopping rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/hasini/ontologies/2020/5/untitled-ontology-2#PrawnTopping
+:PrawnTopping rdf:type owl:Class ;
+              rdfs:subClassOf :SeaFoodTopping .
+
+
+###  http://www.semanticweb.org/hasini/ontologies/2020/5/untitled-ontology-2#RedPepperTopping
+:RedPepperTopping rdf:type owl:Class ;
+                  rdfs:subClassOf :PepperTopping .
+
+
+###  http://www.semanticweb.org/hasini/ontologies/2020/5/untitled-ontology-2#SalamiTopping
+:SalamiTopping rdf:type owl:Class ;
+               rdfs:subClassOf :MeatTopping .
+
+
+###  http://www.semanticweb.org/hasini/ontologies/2020/5/untitled-ontology-2#SeaFoodTopping
+:SeaFoodTopping rdf:type owl:Class ;
+                rdfs:subClassOf :PizzaTopping .
+
+
+###  http://www.semanticweb.org/hasini/ontologies/2020/5/untitled-ontology-2#SpicyBeefTopping
+:SpicyBeefTopping rdf:type owl:Class ;
+                  rdfs:subClassOf :MeatTopping .
+
+
+###  http://www.semanticweb.org/hasini/ontologies/2020/5/untitled-ontology-2#ThinAndCrispyBase
+:ThinAndCrispyBase rdf:type owl:Class ;
+                   rdfs:subClassOf :PizzaBase .
+
+
+###  http://www.semanticweb.org/hasini/ontologies/2020/5/untitled-ontology-2#TomatoTopping
+:TomatoTopping rdf:type owl:Class ;
+               rdfs:subClassOf :VegetableTopping .
+
+
+###  http://www.semanticweb.org/hasini/ontologies/2020/5/untitled-ontology-2#TunaTopping
+:TunaTopping rdf:type owl:Class ;
+             rdfs:subClassOf :SeaFoodTopping .
+
+
+###  http://www.semanticweb.org/hasini/ontologies/2020/5/untitled-ontology-2#VegetableTopping
+:VegetableTopping rdf:type owl:Class ;
+                  rdfs:subClassOf :PizzaTopping .
+
+
+#################################################################
+#    General axioms
+#################################################################
+
+[ rdf:type owl:AllDisjointClasses ;
+  owl:members ( :AnchovyTopping
+                :PrawnTopping
+                :TunaTopping
+              )
+] .
+
+
+[ rdf:type owl:AllDisjointClasses ;
+  owl:members ( :CaperTopping
+                :MushroomTopping
+                :OliveTopping
+                :OnionTopping
+                :PepperTopping
+                :TomatoTopping
+              )
+] .
+
+
+[ rdf:type owl:AllDisjointClasses ;
+  owl:members ( :CheeseTopping
+                :MeatTopping
+                :SeaFoodTopping
+                :VegetableTopping
+              )
+] .
+
+
+[ rdf:type owl:AllDisjointClasses ;
+  owl:members ( :GreenPepperTopping
+                :JalapenoPepperTopping
+                :RedPepperTopping
+              )
+] .
+
+
+[ rdf:type owl:AllDisjointClasses ;
+  owl:members ( :HamTopping
+                :PepperoniTopping
+                :SalamiTopping
+                :SpicyBeefTopping
+              )
+] .
+
+
+###  Generated by the OWL API (version 4.5.9.2019-02-01T07:24:44Z) https://github.com/owlcs/owlapi

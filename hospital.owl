@@ -23,6 +23,10 @@
 
 <http://www.hospital.org/Ontologies/hospital.owl#hasEvents> rdf:type owl:ObjectProperty ;
                                                             
+                                                            rdfs:range :Event ;
+                                                            
+                                                            rdfs:domain :Hospital ;
+                                                            
                                                             rdfs:subPropertyOf <http://www.hospital.org/Ontologies/hospital.owl#hasWork> .
 
 
@@ -30,6 +34,10 @@
 ###  http://www.hospital.org/Ontologies/hospital.owl#hasPeople
 
 <http://www.hospital.org/Ontologies/hospital.owl#hasPeople> rdf:type owl:ObjectProperty ;
+                                                            
+                                                            rdfs:domain :Hospital ;
+                                                            
+                                                            rdfs:range :People ;
                                                             
                                                             rdfs:subPropertyOf <http://www.hospital.org/Ontologies/hospital.owl#hasWork> .
 
@@ -39,6 +47,10 @@
 
 <http://www.hospital.org/Ontologies/hospital.owl#hasPhysicalResources> rdf:type owl:ObjectProperty ;
                                                                        
+                                                                       rdfs:domain :Hospital ;
+                                                                       
+                                                                       rdfs:range :PhysicalResource ;
+                                                                       
                                                                        rdfs:subPropertyOf <http://www.hospital.org/Ontologies/hospital.owl#hasWork> .
 
 
@@ -46,6 +58,10 @@
 ###  http://www.hospital.org/Ontologies/hospital.owl#hasServices
 
 <http://www.hospital.org/Ontologies/hospital.owl#hasServices> rdf:type owl:ObjectProperty ;
+                                                              
+                                                              rdfs:domain :Hospital ;
+                                                              
+                                                              rdfs:range :Service ;
                                                               
                                                               rdfs:subPropertyOf <http://www.hospital.org/Ontologies/hospital.owl#hasWork> .
 
@@ -60,6 +76,10 @@
 ###  http://www.hospital.org/Ontologies/hospital.owl#isServiceOf
 
 <http://www.hospital.org/Ontologies/hospital.owl#isServiceOf> rdf:type owl:ObjectProperty ;
+                                                              
+                                                              rdfs:range :Hospital ;
+                                                              
+                                                              rdfs:domain :Service ;
                                                               
                                                               owl:inverseOf <http://www.hospital.org/Ontologies/hospital.owl#hasServices> ;
                                                               
@@ -144,9 +164,7 @@
 
 :Equipment rdf:type owl:Class ;
            
-           rdfs:subClassOf :PhysicalResource ;
-           
-           owl:disjointWith :Vehicle .
+           rdfs:subClassOf :PhysicalResource .
 
 
 
@@ -443,6 +461,13 @@
                 :People
                 :PhysicalResource
                 :Service
+              )
+] .
+[ rdf:type owl:AllDisjointClasses ;
+  owl:members ( :Equipment
+                :Vehicle
+                <http://www.hospital.org/Ontologies/hospital.owl#Drug>
+                <http://www.hospital.org/Ontologies/hospital.owl#Place>
               )
 ] .
 [ rdf:type owl:AllDisjointClasses ;

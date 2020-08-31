@@ -19,21 +19,57 @@
 #################################################################
 
 
-###  http://www.hospital.org/Ontologies.owl#has
+###  http://www.hospital.org/Ontologies/hospital.owl#hasEvents
 
-:has rdf:type owl:ObjectProperty .
-
-
-
-###  http://www.hospital.org/Ontologies.owl#hasEq
-
-:hasEq rdf:type owl:ObjectProperty .
+<http://www.hospital.org/Ontologies/hospital.owl#hasEvents> rdf:type owl:ObjectProperty ;
+                                                            
+                                                            rdfs:subPropertyOf <http://www.hospital.org/Ontologies/hospital.owl#hasWork> .
 
 
 
-###  http://www.hospital.org/Ontologies.owl#workin
+###  http://www.hospital.org/Ontologies/hospital.owl#hasPeople
 
-:workin rdf:type owl:ObjectProperty .
+<http://www.hospital.org/Ontologies/hospital.owl#hasPeople> rdf:type owl:ObjectProperty ;
+                                                            
+                                                            rdfs:subPropertyOf <http://www.hospital.org/Ontologies/hospital.owl#hasWork> .
+
+
+
+###  http://www.hospital.org/Ontologies/hospital.owl#hasPhysicalResources
+
+<http://www.hospital.org/Ontologies/hospital.owl#hasPhysicalResources> rdf:type owl:ObjectProperty ;
+                                                                       
+                                                                       rdfs:subPropertyOf <http://www.hospital.org/Ontologies/hospital.owl#hasWork> .
+
+
+
+###  http://www.hospital.org/Ontologies/hospital.owl#hasServices
+
+<http://www.hospital.org/Ontologies/hospital.owl#hasServices> rdf:type owl:ObjectProperty ;
+                                                              
+                                                              rdfs:subPropertyOf <http://www.hospital.org/Ontologies/hospital.owl#hasWork> .
+
+
+
+###  http://www.hospital.org/Ontologies/hospital.owl#hasWork
+
+<http://www.hospital.org/Ontologies/hospital.owl#hasWork> rdf:type owl:ObjectProperty .
+
+
+
+###  http://www.hospital.org/Ontologies/hospital.owl#isServiceOf
+
+<http://www.hospital.org/Ontologies/hospital.owl#isServiceOf> rdf:type owl:ObjectProperty ;
+                                                              
+                                                              owl:inverseOf <http://www.hospital.org/Ontologies/hospital.owl#hasServices> ;
+                                                              
+                                                              rdfs:subPropertyOf <http://www.hospital.org/Ontologies/hospital.owl#isWorkOf> .
+
+
+
+###  http://www.hospital.org/Ontologies/hospital.owl#isWorkOf
+
+<http://www.hospital.org/Ontologies/hospital.owl#isWorkOf> rdf:type owl:ObjectProperty .
 
 
 
@@ -244,7 +280,7 @@
 
 :Test rdf:type owl:Class ;
       
-      rdfs:subClassOf :Event .
+      rdfs:subClassOf <http://www.hospital.org/Ontologies/hospital.owl#HospitalAction> .
 
 
 
@@ -252,7 +288,7 @@
 
 :Treatment rdf:type owl:Class ;
            
-           rdfs:subClassOf :Event .
+           rdfs:subClassOf <http://www.hospital.org/Ontologies/hospital.owl#HospitalAction> .
 
 
 
@@ -264,11 +300,19 @@
 
 
 
-###  http://www.hospital.org/Ontologies/hospital.owl#Building
+###  http://www.hospital.org/Ontologies/hospital.owl#Addmitance
 
-<http://www.hospital.org/Ontologies/hospital.owl#Building> rdf:type owl:Class ;
-                                                           
-                                                           rdfs:subClassOf :PhysicalResource .
+<http://www.hospital.org/Ontologies/hospital.owl#Addmitance> rdf:type owl:Class ;
+                                                             
+                                                             rdfs:subClassOf <http://www.hospital.org/Ontologies/hospital.owl#HospitalAction> .
+
+
+
+###  http://www.hospital.org/Ontologies/hospital.owl#ChargeFee
+
+<http://www.hospital.org/Ontologies/hospital.owl#ChargeFee> rdf:type owl:Class ;
+                                                            
+                                                            rdfs:subClassOf <http://www.hospital.org/Ontologies/hospital.owl#HospitalAction> .
 
 
 
@@ -280,11 +324,43 @@
 
 
 
+###  http://www.hospital.org/Ontologies/hospital.owl#Discharge
+
+<http://www.hospital.org/Ontologies/hospital.owl#Discharge> rdf:type owl:Class ;
+                                                            
+                                                            rdfs:subClassOf <http://www.hospital.org/Ontologies/hospital.owl#HospitalAction> .
+
+
+
+###  http://www.hospital.org/Ontologies/hospital.owl#Drug
+
+<http://www.hospital.org/Ontologies/hospital.owl#Drug> rdf:type owl:Class ;
+                                                       
+                                                       rdfs:subClassOf :PhysicalResource .
+
+
+
+###  http://www.hospital.org/Ontologies/hospital.owl#DrugConflict
+
+<http://www.hospital.org/Ontologies/hospital.owl#DrugConflict> rdf:type owl:Class ;
+                                                               
+                                                               rdfs:subClassOf :Conflict .
+
+
+
 ###  http://www.hospital.org/Ontologies/hospital.owl#GovernmentHospital
 
 <http://www.hospital.org/Ontologies/hospital.owl#GovernmentHospital> rdf:type owl:Class ;
                                                                      
                                                                      rdfs:subClassOf :Hospital .
+
+
+
+###  http://www.hospital.org/Ontologies/hospital.owl#HospitalAction
+
+<http://www.hospital.org/Ontologies/hospital.owl#HospitalAction> rdf:type owl:Class ;
+                                                                 
+                                                                 rdfs:subClassOf :Event .
 
 
 
@@ -296,11 +372,27 @@
 
 
 
-###  http://www.hospital.org/Ontologies/hospital.owl#Medicine
+###  http://www.hospital.org/Ontologies/hospital.owl#Place
 
-<http://www.hospital.org/Ontologies/hospital.owl#Medicine> rdf:type owl:Class ;
+<http://www.hospital.org/Ontologies/hospital.owl#Place> rdf:type owl:Class ;
+                                                        
+                                                        rdfs:subClassOf :PhysicalResource .
+
+
+
+###  http://www.hospital.org/Ontologies/hospital.owl#PostTest
+
+<http://www.hospital.org/Ontologies/hospital.owl#PostTest> rdf:type owl:Class ;
                                                            
-                                                           rdfs:subClassOf :PhysicalResource .
+                                                           rdfs:subClassOf :Test .
+
+
+
+###  http://www.hospital.org/Ontologies/hospital.owl#PreTest
+
+<http://www.hospital.org/Ontologies/hospital.owl#PreTest> rdf:type owl:Class ;
+                                                          
+                                                          rdfs:subClassOf :Test .
 
 
 
@@ -309,6 +401,22 @@
 <http://www.hospital.org/Ontologies/hospital.owl#PrivateHospital> rdf:type owl:Class ;
                                                                   
                                                                   rdfs:subClassOf :Hospital .
+
+
+
+###  http://www.hospital.org/Ontologies/hospital.owl#ReportConflict
+
+<http://www.hospital.org/Ontologies/hospital.owl#ReportConflict> rdf:type owl:Class ;
+                                                                 
+                                                                 rdfs:subClassOf :Conflict .
+
+
+
+###  http://www.hospital.org/Ontologies/hospital.owl#Transfer
+
+<http://www.hospital.org/Ontologies/hospital.owl#Transfer> rdf:type owl:Class ;
+                                                           
+                                                           rdfs:subClassOf <http://www.hospital.org/Ontologies/hospital.owl#HospitalAction> .
 
 
 

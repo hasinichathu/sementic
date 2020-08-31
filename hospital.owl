@@ -123,6 +123,27 @@
 
 #################################################################
 #
+#    Data properties
+#
+#################################################################
+
+
+###  http://www.hospital.org/Ontologies/hospital.owl#Active_Part_Is
+
+<http://www.hospital.org/Ontologies/hospital.owl#Active_Part_Is> rdf:type owl:DatatypeProperty .
+
+
+
+###  http://www.hospital.org/Ontologies/hospital.owl#Has_Price_In_$
+
+<http://www.hospital.org/Ontologies/hospital.owl#Has_Price_In_$> rdf:type owl:DatatypeProperty .
+
+
+
+
+
+#################################################################
+#
 #    Classes
 #
 #################################################################
@@ -370,6 +391,14 @@
 
 
 
+###  http://www.hospital.org/Ontologies/hospital.owl#Canteen
+
+<http://www.hospital.org/Ontologies/hospital.owl#Canteen> rdf:type owl:Class ;
+                                                          
+                                                          rdfs:subClassOf <http://www.hospital.org/Ontologies/hospital.owl#Place> .
+
+
+
 ###  http://www.hospital.org/Ontologies/hospital.owl#ChargeFee
 
 <http://www.hospital.org/Ontologies/hospital.owl#ChargeFee> rdf:type owl:Class ;
@@ -400,6 +429,14 @@
 
 
 
+###  http://www.hospital.org/Ontologies/hospital.owl#Dental
+
+<http://www.hospital.org/Ontologies/hospital.owl#Dental> rdf:type owl:Class ;
+                                                         
+                                                         rdfs:subClassOf <http://www.hospital.org/Ontologies/hospital.owl#Place> .
+
+
+
 ###  http://www.hospital.org/Ontologies/hospital.owl#Discharge
 
 <http://www.hospital.org/Ontologies/hospital.owl#Discharge> rdf:type owl:Class ;
@@ -421,6 +458,14 @@
 <http://www.hospital.org/Ontologies/hospital.owl#DrugConflict> rdf:type owl:Class ;
                                                                
                                                                rdfs:subClassOf :Conflict .
+
+
+
+###  http://www.hospital.org/Ontologies/hospital.owl#EmergencyUnit
+
+<http://www.hospital.org/Ontologies/hospital.owl#EmergencyUnit> rdf:type owl:Class ;
+                                                                
+                                                                rdfs:subClassOf <http://www.hospital.org/Ontologies/hospital.owl#Place> .
 
 
 
@@ -474,11 +519,27 @@
 
 
 
+###  http://www.hospital.org/Ontologies/hospital.owl#ICU
+
+<http://www.hospital.org/Ontologies/hospital.owl#ICU> rdf:type owl:Class ;
+                                                      
+                                                      rdfs:subClassOf <http://www.hospital.org/Ontologies/hospital.owl#Place> .
+
+
+
 ###  http://www.hospital.org/Ontologies/hospital.owl#Investor
 
 <http://www.hospital.org/Ontologies/hospital.owl#Investor> rdf:type owl:Class ;
                                                            
                                                            rdfs:subClassOf :People .
+
+
+
+###  http://www.hospital.org/Ontologies/hospital.owl#Laboratary
+
+<http://www.hospital.org/Ontologies/hospital.owl#Laboratary> rdf:type owl:Class ;
+                                                             
+                                                             rdfs:subClassOf <http://www.hospital.org/Ontologies/hospital.owl#Place> .
 
 
 
@@ -498,11 +559,27 @@
 
 
 
+###  http://www.hospital.org/Ontologies/hospital.owl#OPD
+
+<http://www.hospital.org/Ontologies/hospital.owl#OPD> rdf:type owl:Class ;
+                                                      
+                                                      rdfs:subClassOf <http://www.hospital.org/Ontologies/hospital.owl#Place> .
+
+
+
 ###  http://www.hospital.org/Ontologies/hospital.owl#Owner
 
 <http://www.hospital.org/Ontologies/hospital.owl#Owner> rdf:type owl:Class ;
                                                         
                                                         rdfs:subClassOf :People .
+
+
+
+###  http://www.hospital.org/Ontologies/hospital.owl#Phamacy
+
+<http://www.hospital.org/Ontologies/hospital.owl#Phamacy> rdf:type owl:Class ;
+                                                          
+                                                          rdfs:subClassOf <http://www.hospital.org/Ontologies/hospital.owl#Place> .
 
 
 
@@ -637,6 +714,14 @@
 
 
 
+###  http://www.hospital.org/Ontologies/hospital.owl#ScanRoom
+
+<http://www.hospital.org/Ontologies/hospital.owl#ScanRoom> rdf:type owl:Class ;
+                                                           
+                                                           rdfs:subClassOf <http://www.hospital.org/Ontologies/hospital.owl#Place> .
+
+
+
 ###  http://www.hospital.org/Ontologies/hospital.owl#Teaching
 
 <http://www.hospital.org/Ontologies/hospital.owl#Teaching> rdf:type owl:Class ;
@@ -691,6 +776,168 @@
 <http://www.hospital.org/Ontologies/hospital.owl#Visitors> rdf:type owl:Class ;
                                                            
                                                            rdfs:subClassOf :People .
+
+
+
+###  http://www.hospital.org/Ontologies/hospital.owl#Wards
+
+<http://www.hospital.org/Ontologies/hospital.owl#Wards> rdf:type owl:Class ;
+                                                        
+                                                        rdfs:subClassOf <http://www.hospital.org/Ontologies/hospital.owl#Place> .
+
+
+
+###  http://www.hospital.org/Ontologies/hospital.owl#WellKnownHospital
+
+<http://www.hospital.org/Ontologies/hospital.owl#WellKnownHospital> rdf:type owl:Class ;
+                                                                    
+                                                                    owl:equivalentClass [ rdf:type owl:Class ;
+                                                                                          owl:intersectionOf ( :Hospital
+                                                                                                               [ rdf:type owl:Restriction ;
+                                                                                                                 owl:onProperty <http://www.hospital.org/Ontologies/hospital.owl#hasServices> ;
+                                                                                                                 owl:allValuesFrom :Service
+                                                                                                               ]
+                                                                                                             )
+                                                                                        ] .
+
+
+
+
+
+#################################################################
+#
+#    Individuals
+#
+#################################################################
+
+
+###  http://www.hospital.org/Ontologies/hospital.owl#Ambulance
+
+<http://www.hospital.org/Ontologies/hospital.owl#Ambulance> rdf:type owl:NamedIndividual .
+
+
+
+###  http://www.hospital.org/Ontologies/hospital.owl#CTScanner
+
+<http://www.hospital.org/Ontologies/hospital.owl#CTScanner> rdf:type owl:NamedIndividual ;
+                                                            
+                                                            <http://www.hospital.org/Ontologies/hospital.owl#Has_Price_In_$> "675000.0"^^xsd:double .
+
+
+
+###  http://www.hospital.org/Ontologies/hospital.owl#Capsules
+
+<http://www.hospital.org/Ontologies/hospital.owl#Capsules> rdf:type owl:NamedIndividual ;
+                                                           
+                                                           <http://www.hospital.org/Ontologies/hospital.owl#Active_Part_Is> "inside plastic shell"^^xsd:string .
+
+
+
+###  http://www.hospital.org/Ontologies/hospital.owl#Dentist
+
+<http://www.hospital.org/Ontologies/hospital.owl#Dentist> rdf:type owl:NamedIndividual .
+
+
+
+###  http://www.hospital.org/Ontologies/hospital.owl#ECG
+
+<http://www.hospital.org/Ontologies/hospital.owl#ECG> rdf:type owl:NamedIndividual .
+
+
+
+###  http://www.hospital.org/Ontologies/hospital.owl#EyePhysician
+
+<http://www.hospital.org/Ontologies/hospital.owl#EyePhysician> rdf:type owl:NamedIndividual .
+
+
+
+###  http://www.hospital.org/Ontologies/hospital.owl#HeartPhysician
+
+<http://www.hospital.org/Ontologies/hospital.owl#HeartPhysician> rdf:type owl:NamedIndividual .
+
+
+
+###  http://www.hospital.org/Ontologies/hospital.owl#Inhalers
+
+<http://www.hospital.org/Ontologies/hospital.owl#Inhalers> rdf:type owl:NamedIndividual ;
+                                                           
+                                                           <http://www.hospital.org/Ontologies/hospital.owl#Active_Part_Is> "released under pressure"^^xsd:string .
+
+
+
+###  http://www.hospital.org/Ontologies/hospital.owl#Injections
+
+<http://www.hospital.org/Ontologies/hospital.owl#Injections> rdf:type owl:NamedIndividual .
+
+
+
+###  http://www.hospital.org/Ontologies/hospital.owl#Liquid
+
+<http://www.hospital.org/Ontologies/hospital.owl#Liquid> rdf:type owl:NamedIndividual ;
+                                                         
+                                                         <http://www.hospital.org/Ontologies/hospital.owl#Active_Part_Is> "combined with a liquid"^^xsd:string .
+
+
+
+###  http://www.hospital.org/Ontologies/hospital.owl#MRIScanner
+
+<http://www.hospital.org/Ontologies/hospital.owl#MRIScanner> rdf:type owl:NamedIndividual ;
+                                                             
+                                                             <http://www.hospital.org/Ontologies/hospital.owl#Has_Price_In_$> "225000.0"^^xsd:double .
+
+
+
+###  http://www.hospital.org/Ontologies/hospital.owl#PulseOximeter
+
+<http://www.hospital.org/Ontologies/hospital.owl#PulseOximeter> rdf:type owl:NamedIndividual ;
+                                                                
+                                                                <http://www.hospital.org/Ontologies/hospital.owl#Has_Price_In_$> "19.99"^^xsd:double .
+
+
+
+###  http://www.hospital.org/Ontologies/hospital.owl#Stethoscope
+
+<http://www.hospital.org/Ontologies/hospital.owl#Stethoscope> rdf:type owl:NamedIndividual ;
+                                                              
+                                                              <http://www.hospital.org/Ontologies/hospital.owl#Has_Price_In_$> "169.99"^^xsd:double .
+
+
+
+###  http://www.hospital.org/Ontologies/hospital.owl#Surgeon
+
+<http://www.hospital.org/Ontologies/hospital.owl#Surgeon> rdf:type owl:NamedIndividual .
+
+
+
+###  http://www.hospital.org/Ontologies/hospital.owl#SurgeryEquipments
+
+<http://www.hospital.org/Ontologies/hospital.owl#SurgeryEquipments> rdf:type owl:NamedIndividual ;
+                                                                    
+                                                                    <http://www.hospital.org/Ontologies/hospital.owl#Has_Price_In_$> "55.0"^^xsd:double .
+
+
+
+###  http://www.hospital.org/Ontologies/hospital.owl#Tablet
+
+<http://www.hospital.org/Ontologies/hospital.owl#Tablet> rdf:type owl:NamedIndividual ;
+                                                         
+                                                         <http://www.hospital.org/Ontologies/hospital.owl#Active_Part_Is> "combined with another substance"^^xsd:string .
+
+
+
+###  http://www.hospital.org/Ontologies/hospital.owl#Thermometer
+
+<http://www.hospital.org/Ontologies/hospital.owl#Thermometer> rdf:type owl:NamedIndividual ;
+                                                              
+                                                              <http://www.hospital.org/Ontologies/hospital.owl#Has_Price_In_$> "8.0"^^xsd:double .
+
+
+
+###  http://www.hospital.org/Ontologies/hospital.owl#Ventilator
+
+<http://www.hospital.org/Ontologies/hospital.owl#Ventilator> rdf:type owl:NamedIndividual ;
+                                                             
+                                                             <http://www.hospital.org/Ontologies/hospital.owl#Has_Price_In_$> "25000.0"^^xsd:double .
 
 
 

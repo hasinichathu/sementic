@@ -31,6 +31,18 @@
 
 
 
+###  http://www.hospital.org/Ontologies/hospital.owl#hasHospitalAction
+
+<http://www.hospital.org/Ontologies/hospital.owl#hasHospitalAction> rdf:type owl:ObjectProperty ;
+                                                                    
+                                                                    rdfs:domain :Hospital ;
+                                                                    
+                                                                    rdfs:range <http://www.hospital.org/Ontologies/hospital.owl#HospitalAction> ;
+                                                                    
+                                                                    rdfs:subPropertyOf <http://www.hospital.org/Ontologies/hospital.owl#hasWork> .
+
+
+
 ###  http://www.hospital.org/Ontologies/hospital.owl#hasPeople
 
 <http://www.hospital.org/Ontologies/hospital.owl#hasPeople> rdf:type owl:ObjectProperty ;
@@ -70,6 +82,20 @@
 ###  http://www.hospital.org/Ontologies/hospital.owl#hasWork
 
 <http://www.hospital.org/Ontologies/hospital.owl#hasWork> rdf:type owl:ObjectProperty .
+
+
+
+###  http://www.hospital.org/Ontologies/hospital.owl#isHospitalActionOf
+
+<http://www.hospital.org/Ontologies/hospital.owl#isHospitalActionOf> rdf:type owl:ObjectProperty ;
+                                                                     
+                                                                     rdfs:range :Hospital ;
+                                                                     
+                                                                     rdfs:domain <http://www.hospital.org/Ontologies/hospital.owl#HospitalAction> ;
+                                                                     
+                                                                     owl:inverseOf <http://www.hospital.org/Ontologies/hospital.owl#hasHospitalAction> ;
+                                                                     
+                                                                     rdfs:subPropertyOf <http://www.hospital.org/Ontologies/hospital.owl#isWorkOf> .
 
 
 
@@ -184,7 +210,20 @@
 
 ###  http://www.hospital.org/Ontologies.owl#Hospital
 
-:Hospital rdf:type owl:Class .
+:Hospital rdf:type owl:Class ;
+          
+          rdfs:subClassOf [ rdf:type owl:Restriction ;
+                            owl:onProperty <http://www.hospital.org/Ontologies/hospital.owl#hasPhysicalResources> ;
+                            owl:someValuesFrom :PhysicalResource
+                          ] ,
+                          [ rdf:type owl:Restriction ;
+                            owl:onProperty <http://www.hospital.org/Ontologies/hospital.owl#hasHospitalAction> ;
+                            owl:someValuesFrom <http://www.hospital.org/Ontologies/hospital.owl#HospitalAction>
+                          ] ,
+                          [ rdf:type owl:Restriction ;
+                            owl:onProperty <http://www.hospital.org/Ontologies/hospital.owl#hasPeople> ;
+                            owl:someValuesFrom :People
+                          ] .
 
 
 
@@ -330,7 +369,7 @@
 
 <http://www.hospital.org/Ontologies/hospital.owl#ChargeFee> rdf:type owl:Class ;
                                                             
-                                                            rdfs:subClassOf <http://www.hospital.org/Ontologies/hospital.owl#HospitalAction> .
+                                                            rdfs:subClassOf :Event .
 
 
 
@@ -366,19 +405,23 @@
 
 
 
-###  http://www.hospital.org/Ontologies/hospital.owl#GovernmentHospital
+###  http://www.hospital.org/Ontologies/hospital.owl#GeneralHospital
 
-<http://www.hospital.org/Ontologies/hospital.owl#GovernmentHospital> rdf:type owl:Class ;
-                                                                     
-                                                                     rdfs:subClassOf :Hospital .
+<http://www.hospital.org/Ontologies/hospital.owl#GeneralHospital> rdf:type owl:Class ;
+                                                                  
+                                                                  rdfs:subClassOf <http://www.hospital.org/Ontologies/hospital.owl#NamedHospital> ,
+                                                                                  [ rdf:type owl:Restriction ;
+                                                                                    owl:onProperty <http://www.hospital.org/Ontologies/hospital.owl#hasServices> ;
+                                                                                    owl:someValuesFrom :Service
+                                                                                  ] ;
+                                                                  
+                                                                  rdfs:comment "A government hospital which are having every hospital actions and hospital services" .
 
 
 
 ###  http://www.hospital.org/Ontologies/hospital.owl#HospitalAction
 
-<http://www.hospital.org/Ontologies/hospital.owl#HospitalAction> rdf:type owl:Class ;
-                                                                 
-                                                                 rdfs:subClassOf :Event .
+<http://www.hospital.org/Ontologies/hospital.owl#HospitalAction> rdf:type owl:Class .
 
 
 
@@ -387,6 +430,14 @@
 <http://www.hospital.org/Ontologies/hospital.owl#LabrotaryStaff> rdf:type owl:Class ;
                                                                  
                                                                  rdfs:subClassOf :Staff .
+
+
+
+###  http://www.hospital.org/Ontologies/hospital.owl#NamedHospital
+
+<http://www.hospital.org/Ontologies/hospital.owl#NamedHospital> rdf:type owl:Class ;
+                                                                
+                                                                rdfs:subClassOf :Hospital .
 
 
 
@@ -418,7 +469,33 @@
 
 <http://www.hospital.org/Ontologies/hospital.owl#PrivateHospital> rdf:type owl:Class ;
                                                                   
-                                                                  rdfs:subClassOf :Hospital .
+                                                                  rdfs:subClassOf <http://www.hospital.org/Ontologies/hospital.owl#NamedHospital> ,
+                                                                                  [ rdf:type owl:Restriction ;
+                                                                                    owl:onProperty <http://www.hospital.org/Ontologies/hospital.owl#hasServices> ;
+                                                                                    owl:someValuesFrom :IntensiveCare
+                                                                                  ] ,
+                                                                                  [ rdf:type owl:Restriction ;
+                                                                                    owl:onProperty <http://www.hospital.org/Ontologies/hospital.owl#hasServices> ;
+                                                                                    owl:someValuesFrom :Surgery
+                                                                                  ] ,
+                                                                                  [ rdf:type owl:Restriction ;
+                                                                                    owl:onProperty <http://www.hospital.org/Ontologies/hospital.owl#hasServices> ;
+                                                                                    owl:someValuesFrom :Cardiology
+                                                                                  ] ,
+                                                                                  [ rdf:type owl:Restriction ;
+                                                                                    owl:onProperty <http://www.hospital.org/Ontologies/hospital.owl#hasServices> ;
+                                                                                    owl:someValuesFrom :Radiology
+                                                                                  ] ,
+                                                                                  [ rdf:type owl:Restriction ;
+                                                                                    owl:onProperty <http://www.hospital.org/Ontologies/hospital.owl#hasServices> ;
+                                                                                    owl:someValuesFrom :Emergency
+                                                                                  ] ,
+                                                                                  [ rdf:type owl:Restriction ;
+                                                                                    owl:onProperty <http://www.hospital.org/Ontologies/hospital.owl#hasEvents> ;
+                                                                                    owl:someValuesFrom <http://www.hospital.org/Ontologies/hospital.owl#ChargeFee>
+                                                                                  ] ;
+                                                                  
+                                                                  rdfs:comment "A hospital which charge fee for every hospital facility" .
 
 
 
@@ -427,6 +504,46 @@
 <http://www.hospital.org/Ontologies/hospital.owl#ReportConflict> rdf:type owl:Class ;
                                                                  
                                                                  rdfs:subClassOf :Conflict .
+
+
+
+###  http://www.hospital.org/Ontologies/hospital.owl#RuralHospital
+
+<http://www.hospital.org/Ontologies/hospital.owl#RuralHospital> rdf:type owl:Class ;
+                                                                
+                                                                rdfs:subClassOf <http://www.hospital.org/Ontologies/hospital.owl#NamedHospital> ,
+                                                                                [ rdf:type owl:Restriction ;
+                                                                                  owl:onProperty <http://www.hospital.org/Ontologies/hospital.owl#hasServices> ;
+                                                                                  owl:someValuesFrom <http://www.hospital.org/Ontologies/hospital.owl#ClinicalService>
+                                                                                ] ;
+                                                                
+                                                                rdfs:comment "A hospital which is at least having the basic hospital actios." .
+
+
+
+###  http://www.hospital.org/Ontologies/hospital.owl#Teaching
+
+<http://www.hospital.org/Ontologies/hospital.owl#Teaching> rdf:type owl:Class ;
+                                                           
+                                                           rdfs:subClassOf :Event .
+
+
+
+###  http://www.hospital.org/Ontologies/hospital.owl#TeachingHospital
+
+<http://www.hospital.org/Ontologies/hospital.owl#TeachingHospital> rdf:type owl:Class ;
+                                                                   
+                                                                   rdfs:subClassOf <http://www.hospital.org/Ontologies/hospital.owl#NamedHospital> ,
+                                                                                   [ rdf:type owl:Restriction ;
+                                                                                     owl:onProperty <http://www.hospital.org/Ontologies/hospital.owl#hasEvents> ;
+                                                                                     owl:someValuesFrom <http://www.hospital.org/Ontologies/hospital.owl#Teaching>
+                                                                                   ] ,
+                                                                                   [ rdf:type owl:Restriction ;
+                                                                                     owl:onProperty <http://www.hospital.org/Ontologies/hospital.owl#hasServices> ;
+                                                                                     owl:someValuesFrom :Service
+                                                                                   ] ;
+                                                                   
+                                                                   rdfs:comment "A hospital which is used for the purpose of teaching to the medical  students including other hospital actions and services." .
 
 
 
@@ -456,18 +573,19 @@
 
 
 [ rdf:type owl:AllDisjointClasses ;
+  owl:members ( :Equipment
+                :Vehicle
+                <http://www.hospital.org/Ontologies/hospital.owl#Drug>
+                <http://www.hospital.org/Ontologies/hospital.owl#Place>
+              )
+] .
+[ rdf:type owl:AllDisjointClasses ;
   owl:members ( :Event
                 :Hospital
                 :People
                 :PhysicalResource
                 :Service
-              )
-] .
-[ rdf:type owl:AllDisjointClasses ;
-  owl:members ( :Equipment
-                :Vehicle
-                <http://www.hospital.org/Ontologies/hospital.owl#Drug>
-                <http://www.hospital.org/Ontologies/hospital.owl#Place>
+                <http://www.hospital.org/Ontologies/hospital.owl#HospitalAction>
               )
 ] .
 [ rdf:type owl:AllDisjointClasses ;

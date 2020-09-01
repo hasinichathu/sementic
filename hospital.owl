@@ -591,7 +591,9 @@
 
 <http://www.hospital.org/Ontologies/hospital.owl#Government> rdf:type owl:Class ;
                                                              
-                                                             rdfs:subClassOf <http://www.hospital.org/Ontologies/hospital.owl#OwnedBy> .
+                                                             rdfs:subClassOf <http://www.hospital.org/Ontologies/hospital.owl#OwnedBy> ;
+                                                             
+                                                             owl:disjointWith <http://www.hospital.org/Ontologies/hospital.owl#GroupOfPeople> .
 
 
 
@@ -1304,19 +1306,20 @@
 
 
 [ rdf:type owl:AllDisjointClasses ;
+  owl:members ( :Equipment
+                :Vehicle
+                <http://www.hospital.org/Ontologies/hospital.owl#Drug>
+                <http://www.hospital.org/Ontologies/hospital.owl#Place>
+              )
+] .
+[ rdf:type owl:AllDisjointClasses ;
   owl:members ( :Event
                 :Hospital
                 :People
                 :PhysicalResource
                 :Service
                 <http://www.hospital.org/Ontologies/hospital.owl#HospitalAction>
-              )
-] .
-[ rdf:type owl:AllDisjointClasses ;
-  owl:members ( :Equipment
-                :Vehicle
-                <http://www.hospital.org/Ontologies/hospital.owl#Drug>
-                <http://www.hospital.org/Ontologies/hospital.owl#Place>
+                <http://www.hospital.org/Ontologies/hospital.owl#Policy>
               )
 ] .
 [ rdf:type owl:AllDisjointClasses ;

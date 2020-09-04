@@ -29,6 +29,20 @@
            rdfs:range :Staff .
 
 
+###  http://www.hospital.org/Ontologies.owl#check
+:check rdf:type owl:ObjectProperty ;
+       rdfs:subPropertyOf :hasWork ;
+       rdfs:domain :LabrotaryStaff ;
+       rdfs:range :Conflict .
+
+
+###  http://www.hospital.org/Ontologies.owl#hasConcernOn
+:hasConcernOn rdf:type owl:ObjectProperty ;
+              rdfs:subPropertyOf :hasWork ;
+              rdfs:domain :Doctor ;
+              rdfs:range :Alert .
+
+
 ###  http://www.hospital.org/Ontologies.owl#hasEvents
 :hasEvents rdf:type owl:ObjectProperty ;
            rdfs:subPropertyOf :hasWork ;
@@ -109,20 +123,6 @@
          rdfs:subPropertyOf :hasWork ;
          rdfs:domain :Hospital ;
          rdfs:range :Procedure .
-
-
-###  http://www.hospital.org/Ontologies/hospital.owl#check
-:check rdf:type owl:ObjectProperty ;
-       rdfs:subPropertyOf :hasWork ;
-       rdfs:domain :LabrotaryStaff ;
-       rdfs:range :Conflict .
-
-
-###  http://www.hospital.org/Ontologies/hospital.owl#hasConcernOn
-:hasConcernOn rdf:type owl:ObjectProperty ;
-              rdfs:subPropertyOf :hasWork ;
-              rdfs:domain :Doctor ;
-              rdfs:range :Alert .
 
 
 #################################################################
@@ -263,6 +263,73 @@
 
 ###  http://www.hospital.org/Ontologies.owl#Event
 :Event rdf:type owl:Class .
+
+
+###  http://www.hospital.org/Ontologies.owl#ForProfitHospital
+:ForProfitHospital rdf:type owl:Class ;
+                   owl:equivalentClass [ owl:intersectionOf ( :Hospital
+                                                              [ rdf:type owl:Restriction ;
+                                                                owl:onProperty :hasEvents ;
+                                                                owl:allValuesFrom :ChargeFee
+                                                              ]
+                                                              [ rdf:type owl:Restriction ;
+                                                                owl:onProperty :hasPolicy ;
+                                                                owl:allValuesFrom :GroupOfPeople
+                                                              ]
+                                                              [ rdf:type owl:Restriction ;
+                                                                owl:onProperty :hasPolicy ;
+                                                                owl:allValuesFrom :ProfitEarning
+                                                              ]
+                                                            ) ;
+                                         rdf:type owl:Class
+                                       ] ;
+                   rdfs:subClassOf :NamedHospital ,
+                                   [ rdf:type owl:Restriction ;
+                                     owl:onProperty :hasServices ;
+                                     owl:someValuesFrom :Anesthesiology
+                                   ] ,
+                                   [ rdf:type owl:Restriction ;
+                                     owl:onProperty :hasServices ;
+                                     owl:someValuesFrom :CancerCenter
+                                   ] ,
+                                   [ rdf:type owl:Restriction ;
+                                     owl:onProperty :hasServices ;
+                                     owl:someValuesFrom :Cardiology
+                                   ] ,
+                                   [ rdf:type owl:Restriction ;
+                                     owl:onProperty :hasServices ;
+                                     owl:someValuesFrom :Emergency
+                                   ] ,
+                                   [ rdf:type owl:Restriction ;
+                                     owl:onProperty :hasServices ;
+                                     owl:someValuesFrom :InfantService
+                                   ] ,
+                                   [ rdf:type owl:Restriction ;
+                                     owl:onProperty :hasServices ;
+                                     owl:someValuesFrom :IntensiveCare
+                                   ] ,
+                                   [ rdf:type owl:Restriction ;
+                                     owl:onProperty :hasServices ;
+                                     owl:someValuesFrom :Radiology
+                                   ] ,
+                                   [ rdf:type owl:Restriction ;
+                                     owl:onProperty :hasServices ;
+                                     owl:someValuesFrom :Surgery
+                                   ] ,
+                                   [ rdf:type owl:Restriction ;
+                                     owl:onProperty :hasEvents ;
+                                     owl:allValuesFrom :ChargeFee
+                                   ] ,
+                                   [ rdf:type owl:Restriction ;
+                                     owl:onProperty :hasPolicy ;
+                                     owl:allValuesFrom :GroupOfPeople
+                                   ] ,
+                                   [ rdf:type owl:Restriction ;
+                                     owl:onProperty :hasPolicy ;
+                                     owl:allValuesFrom :ProfitEarning
+                                   ] ;
+                   rdfs:comment "A hospital which charge fee for every hospital facility" ,
+                                "A hospital which does not expect a profit." .
 
 
 ###  http://www.hospital.org/Ontologies.owl#Government
@@ -445,73 +512,6 @@
 
 ###  http://www.hospital.org/Ontologies.owl#Policy
 :Policy rdf:type owl:Class .
-
-
-###  http://www.hospital.org/Ontologies.owl#PrivateHospital
-:PrivateHospital rdf:type owl:Class ;
-                 owl:equivalentClass [ owl:intersectionOf ( :Hospital
-                                                            [ rdf:type owl:Restriction ;
-                                                              owl:onProperty :hasEvents ;
-                                                              owl:allValuesFrom :ChargeFee
-                                                            ]
-                                                            [ rdf:type owl:Restriction ;
-                                                              owl:onProperty :hasPolicy ;
-                                                              owl:allValuesFrom :GroupOfPeople
-                                                            ]
-                                                            [ rdf:type owl:Restriction ;
-                                                              owl:onProperty :hasPolicy ;
-                                                              owl:allValuesFrom :ProfitEarning
-                                                            ]
-                                                          ) ;
-                                       rdf:type owl:Class
-                                     ] ;
-                 rdfs:subClassOf :NamedHospital ,
-                                 [ rdf:type owl:Restriction ;
-                                   owl:onProperty :hasServices ;
-                                   owl:someValuesFrom :Anesthesiology
-                                 ] ,
-                                 [ rdf:type owl:Restriction ;
-                                   owl:onProperty :hasServices ;
-                                   owl:someValuesFrom :CancerCenter
-                                 ] ,
-                                 [ rdf:type owl:Restriction ;
-                                   owl:onProperty :hasServices ;
-                                   owl:someValuesFrom :Cardiology
-                                 ] ,
-                                 [ rdf:type owl:Restriction ;
-                                   owl:onProperty :hasServices ;
-                                   owl:someValuesFrom :Emergency
-                                 ] ,
-                                 [ rdf:type owl:Restriction ;
-                                   owl:onProperty :hasServices ;
-                                   owl:someValuesFrom :InfantService
-                                 ] ,
-                                 [ rdf:type owl:Restriction ;
-                                   owl:onProperty :hasServices ;
-                                   owl:someValuesFrom :IntensiveCare
-                                 ] ,
-                                 [ rdf:type owl:Restriction ;
-                                   owl:onProperty :hasServices ;
-                                   owl:someValuesFrom :Radiology
-                                 ] ,
-                                 [ rdf:type owl:Restriction ;
-                                   owl:onProperty :hasServices ;
-                                   owl:someValuesFrom :Surgery
-                                 ] ,
-                                 [ rdf:type owl:Restriction ;
-                                   owl:onProperty :hasEvents ;
-                                   owl:allValuesFrom :ChargeFee
-                                 ] ,
-                                 [ rdf:type owl:Restriction ;
-                                   owl:onProperty :hasPolicy ;
-                                   owl:allValuesFrom :GroupOfPeople
-                                 ] ,
-                                 [ rdf:type owl:Restriction ;
-                                   owl:onProperty :hasPolicy ;
-                                   owl:allValuesFrom :ProfitEarning
-                                 ] ;
-                 rdfs:comment "A hospital which charge fee for every hospital facility" ,
-                              "A hospital which does not expect a profit." .
 
 
 ###  http://www.hospital.org/Ontologies.owl#Procedure

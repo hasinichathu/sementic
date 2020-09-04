@@ -8,8 +8,7 @@
 
 <http://www.hospital.org/Ontologies/hospital.owl> rdf:type owl:Ontology ;
                                                   
-                                                  rdfs:comment "add new comment" ,
-                                                               "This is about a hospital ontology" .
+                                                  rdfs:comment "This is about a hospital ontology" .
 
 
 #################################################################
@@ -443,7 +442,11 @@
                                    ] ,
                                    [ rdf:type owl:Restriction ;
                                      owl:onProperty :hasServices ;
-                                     owl:someValuesFrom :InfantService
+                                     owl:someValuesFrom :CancerCenter
+                                   ] ,
+                                   [ rdf:type owl:Restriction ;
+                                     owl:onProperty :hasServices ;
+                                     owl:someValuesFrom :Surgery
                                    ] ,
                                    [ rdf:type owl:Restriction ;
                                      owl:onProperty :hasServices ;
@@ -455,15 +458,11 @@
                                    ] ,
                                    [ rdf:type owl:Restriction ;
                                      owl:onProperty :hasServices ;
-                                     owl:someValuesFrom :IntensiveCare
+                                     owl:someValuesFrom :InfantService
                                    ] ,
                                    [ rdf:type owl:Restriction ;
                                      owl:onProperty :hasEvents ;
                                      owl:allValuesFrom :ChargeFee
-                                   ] ,
-                                   [ rdf:type owl:Restriction ;
-                                     owl:onProperty :hasServices ;
-                                     owl:someValuesFrom :Surgery
                                    ] ,
                                    [ rdf:type owl:Restriction ;
                                      owl:onProperty :hasPolicy ;
@@ -471,15 +470,15 @@
                                    ] ,
                                    [ rdf:type owl:Restriction ;
                                      owl:onProperty :hasServices ;
+                                     owl:someValuesFrom :Emergency
+                                   ] ,
+                                   [ rdf:type owl:Restriction ;
+                                     owl:onProperty :hasServices ;
                                      owl:someValuesFrom :Anesthesiology
                                    ] ,
                                    [ rdf:type owl:Restriction ;
                                      owl:onProperty :hasServices ;
-                                     owl:someValuesFrom :CancerCenter
-                                   ] ,
-                                   [ rdf:type owl:Restriction ;
-                                     owl:onProperty :hasServices ;
-                                     owl:someValuesFrom :Emergency
+                                     owl:someValuesFrom :IntensiveCare
                                    ] ;
                    
                    rdfs:comment "A hospital which does not expect a profit." ,
@@ -553,12 +552,12 @@
 :Hospital rdf:type owl:Class ;
           
           rdfs:subClassOf [ rdf:type owl:Restriction ;
-                            owl:onProperty :hasPeople ;
-                            owl:someValuesFrom :People
-                          ] ,
-                          [ rdf:type owl:Restriction ;
                             owl:onProperty :hasPhysicalResources ;
                             owl:someValuesFrom :PhysicalResource
+                          ] ,
+                          [ rdf:type owl:Restriction ;
+                            owl:onProperty :hasPeople ;
+                            owl:someValuesFrom :People
                           ] ,
                           [ rdf:type owl:Restriction ;
                             owl:onProperty :perform ;
@@ -704,11 +703,11 @@
                                      ] ,
                                      [ rdf:type owl:Restriction ;
                                        owl:onProperty :hasServices ;
-                                       owl:someValuesFrom :ClinicalService
+                                       owl:someValuesFrom :Emergency
                                      ] ,
                                      [ rdf:type owl:Restriction ;
                                        owl:onProperty :hasServices ;
-                                       owl:someValuesFrom :Emergency
+                                       owl:someValuesFrom :ClinicalService
                                      ] ;
                      
                      rdfs:comment "These hospitals are specialized in providing treatments for mental health." .
@@ -799,12 +798,12 @@
                                     owl:someValuesFrom :Researching
                                   ] ,
                                   [ rdf:type owl:Restriction ;
-                                    owl:onProperty :hasServices ;
-                                    owl:someValuesFrom :Emergency
-                                  ] ,
-                                  [ rdf:type owl:Restriction ;
                                     owl:onProperty :hasPolicy ;
                                     owl:allValuesFrom :Government
+                                  ] ,
+                                  [ rdf:type owl:Restriction ;
+                                    owl:onProperty :hasServices ;
+                                    owl:someValuesFrom :Emergency
                                   ] ;
                   
                   rdfs:comment "A hosital which is having the purpose of doing research." .
@@ -825,12 +824,12 @@
                
                rdfs:subClassOf :NamedHospital ,
                                [ rdf:type owl:Restriction ;
-                                 owl:onProperty :hasPolicy ;
-                                 owl:allValuesFrom :Government
-                               ] ,
-                               [ rdf:type owl:Restriction ;
                                  owl:onProperty :hasServices ;
                                  owl:someValuesFrom :ClinicalService
+                               ] ,
+                               [ rdf:type owl:Restriction ;
+                                 owl:onProperty :hasPolicy ;
+                                 owl:allValuesFrom :Government
                                ] ,
                                [ rdf:type owl:Restriction ;
                                  owl:onProperty :hasServices ;
@@ -894,35 +893,19 @@
                   rdfs:subClassOf :NamedHospital ,
                                   [ rdf:type owl:Restriction ;
                                     owl:onProperty :hasServices ;
-                                    owl:someValuesFrom :Anesthesiology
-                                  ] ,
-                                  [ rdf:type owl:Restriction ;
-                                    owl:onProperty :hasServices ;
-                                    owl:someValuesFrom :ClinicalService
-                                  ] ,
-                                  [ rdf:type owl:Restriction ;
-                                    owl:onProperty :hasServices ;
-                                    owl:someValuesFrom :Cardiology
-                                  ] ,
-                                  [ rdf:type owl:Restriction ;
-                                    owl:onProperty :hasServices ;
-                                    owl:someValuesFrom :Radiology
-                                  ] ,
-                                  [ rdf:type owl:Restriction ;
-                                    owl:onProperty :hasServices ;
-                                    owl:someValuesFrom :Emergency
-                                  ] ,
-                                  [ rdf:type owl:Restriction ;
-                                    owl:onProperty :hasServices ;
                                     owl:someValuesFrom :Surgery
                                   ] ,
                                   [ rdf:type owl:Restriction ;
                                     owl:onProperty :hasServices ;
-                                    owl:someValuesFrom :Teaching
+                                    owl:someValuesFrom :InfantService
                                   ] ,
                                   [ rdf:type owl:Restriction ;
-                                    owl:onProperty :hasPolicy ;
-                                    owl:allValuesFrom :Government
+                                    owl:onProperty :hasServices ;
+                                    owl:someValuesFrom :CancerCenter
+                                  ] ,
+                                  [ rdf:type owl:Restriction ;
+                                    owl:onProperty :hasServices ;
+                                    owl:someValuesFrom :IntensiveCare
                                   ] ,
                                   [ rdf:type owl:Class ;
                                     owl:intersectionOf ( [ rdf:type owl:Restriction ;
@@ -941,15 +924,31 @@
                                   ] ,
                                   [ rdf:type owl:Restriction ;
                                     owl:onProperty :hasServices ;
-                                    owl:someValuesFrom :InfantService
+                                    owl:someValuesFrom :Cardiology
                                   ] ,
                                   [ rdf:type owl:Restriction ;
                                     owl:onProperty :hasServices ;
-                                    owl:someValuesFrom :IntensiveCare
+                                    owl:someValuesFrom :Teaching
                                   ] ,
                                   [ rdf:type owl:Restriction ;
                                     owl:onProperty :hasServices ;
-                                    owl:someValuesFrom :CancerCenter
+                                    owl:someValuesFrom :Emergency
+                                  ] ,
+                                  [ rdf:type owl:Restriction ;
+                                    owl:onProperty :hasServices ;
+                                    owl:someValuesFrom :Radiology
+                                  ] ,
+                                  [ rdf:type owl:Restriction ;
+                                    owl:onProperty :hasPolicy ;
+                                    owl:allValuesFrom :Government
+                                  ] ,
+                                  [ rdf:type owl:Restriction ;
+                                    owl:onProperty :hasServices ;
+                                    owl:someValuesFrom :Anesthesiology
+                                  ] ,
+                                  [ rdf:type owl:Restriction ;
+                                    owl:onProperty :hasServices ;
+                                    owl:someValuesFrom :ClinicalService
                                   ] ;
                   
                   rdfs:comment "A hospital which is used for the purpose of teaching to the medical  students including other hospital actions and services." .
@@ -1035,11 +1034,7 @@
                rdfs:subClassOf :NamedHospital ,
                                [ rdf:type owl:Restriction ;
                                  owl:onProperty :hasServices ;
-                                 owl:someValuesFrom :Radiology
-                               ] ,
-                               [ rdf:type owl:Restriction ;
-                                 owl:onProperty :hasServices ;
-                                 owl:someValuesFrom :Gynecology
+                                 owl:someValuesFrom :CancerCenter
                                ] ,
                                [ rdf:type owl:Restriction ;
                                  owl:onProperty :hasServices ;
@@ -1048,6 +1043,18 @@
                                [ rdf:type owl:Restriction ;
                                  owl:onProperty :hasServices ;
                                  owl:someValuesFrom :ClinicalService
+                               ] ,
+                               [ rdf:type owl:Restriction ;
+                                 owl:onProperty :hasServices ;
+                                 owl:someValuesFrom :Surgery
+                               ] ,
+                               [ rdf:type owl:Restriction ;
+                                 owl:onProperty :hasPolicy ;
+                                 owl:allValuesFrom :Government
+                               ] ,
+                               [ rdf:type owl:Restriction ;
+                                 owl:onProperty :hasServices ;
+                                 owl:someValuesFrom :Gynecology
                                ] ,
                                [ rdf:type owl:Class ;
                                  owl:intersectionOf ( [ rdf:type owl:Restriction ;
@@ -1065,8 +1072,8 @@
                                                     )
                                ] ,
                                [ rdf:type owl:Restriction ;
-                                 owl:onProperty :hasPolicy ;
-                                 owl:allValuesFrom :Government
+                                 owl:onProperty :hasServices ;
+                                 owl:someValuesFrom :IntensiveCare
                                ] ,
                                [ rdf:type owl:Restriction ;
                                  owl:onProperty :hasServices ;
@@ -1074,15 +1081,7 @@
                                ] ,
                                [ rdf:type owl:Restriction ;
                                  owl:onProperty :hasServices ;
-                                 owl:someValuesFrom :Surgery
-                               ] ,
-                               [ rdf:type owl:Restriction ;
-                                 owl:onProperty :hasServices ;
-                                 owl:someValuesFrom :IntensiveCare
-                               ] ,
-                               [ rdf:type owl:Restriction ;
-                                 owl:onProperty :hasServices ;
-                                 owl:someValuesFrom :CancerCenter
+                                 owl:someValuesFrom :Radiology
                                ] ;
                
                rdfs:comment "Mainly thses hospitals focus on womens' treatments." .
@@ -1096,7 +1095,7 @@
                                                                      rdfs:subClassOf :NamedHospital ,
                                                                                      [ rdf:type owl:Restriction ;
                                                                                        owl:onProperty :hasServices ;
-                                                                                       owl:someValuesFrom :Cardiology
+                                                                                       owl:someValuesFrom :CancerCenter
                                                                                      ] ,
                                                                                      [ rdf:type owl:Restriction ;
                                                                                        owl:onProperty :hasServices ;
@@ -1108,10 +1107,6 @@
                                                                                      ] ,
                                                                                      [ rdf:type owl:Restriction ;
                                                                                        owl:onProperty :hasServices ;
-                                                                                       owl:someValuesFrom :IntensiveCare
-                                                                                     ] ,
-                                                                                     [ rdf:type owl:Restriction ;
-                                                                                       owl:onProperty :hasServices ;
                                                                                        owl:someValuesFrom :InfantService
                                                                                      ] ,
                                                                                      [ rdf:type owl:Restriction ;
@@ -1120,7 +1115,11 @@
                                                                                      ] ,
                                                                                      [ rdf:type owl:Restriction ;
                                                                                        owl:onProperty :hasServices ;
-                                                                                       owl:someValuesFrom :CancerCenter
+                                                                                       owl:someValuesFrom :IntensiveCare
+                                                                                     ] ,
+                                                                                     [ rdf:type owl:Restriction ;
+                                                                                       owl:onProperty :hasServices ;
+                                                                                       owl:someValuesFrom :Cardiology
                                                                                      ] ,
                                                                                      [ rdf:type owl:Restriction ;
                                                                                        owl:onProperty :hasServices ;
@@ -1241,7 +1240,8 @@
 
 ###  http://www.hospital.org/Ontologies.owl#DeSoysaHospital
 
-:DeSoysaHospital rdf:type :WomenHospital ,
+:DeSoysaHospital rdf:type :ForProfitHospital ,
+                          :WomenHospital ,
                           owl:NamedIndividual ;
                  
                  :hasBeds 800 ;

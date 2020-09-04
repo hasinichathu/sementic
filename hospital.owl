@@ -14,6 +14,13 @@
 #    Object Properties
 #################################################################
 
+###  http://www.hospital.org/Ontologies.owl#admittedTo
+:admittedTo rdf:type owl:ObjectProperty ;
+            rdfs:subPropertyOf :hasWork ;
+            rdfs:domain :Patient ;
+            rdfs:range :Hospital .
+
+
 ###  http://www.hospital.org/Ontologies.owl#advicesTo
 :advicesTo rdf:type owl:ObjectProperty ;
            rdfs:subPropertyOf :hasWork ;
@@ -32,16 +39,9 @@
 ###  http://www.hospital.org/Ontologies.owl#hasHospital
 :hasHospital rdf:type owl:ObjectProperty ;
              rdfs:subPropertyOf :hasWork ;
+             rdf:type owl:FunctionalProperty ;
              rdfs:domain :Doctor ;
              rdfs:range :Hospital .
-
-
-###  http://www.hospital.org/Ontologies.owl#hasHospitalAction
-:hasHospitalAction rdf:type owl:ObjectProperty ;
-                   rdfs:subPropertyOf :hasWork ;
-                   owl:inverseOf :isHospitalActionOf ;
-                   rdfs:domain :Hospital ;
-                   rdfs:range :HospitalAction .
 
 
 ###  http://www.hospital.org/Ontologies.owl#hasPeople
@@ -70,7 +70,6 @@
 :hasServices rdf:type owl:ObjectProperty ;
              rdfs:subPropertyOf :hasWork ;
              owl:inverseOf :isServiceOf ;
-             rdf:type owl:TransitiveProperty ;
              rdfs:domain :Hospital ;
              rdfs:range :Service .
 
@@ -82,7 +81,8 @@
 ###  http://www.hospital.org/Ontologies.owl#isHospitalActionOf
 :isHospitalActionOf rdf:type owl:ObjectProperty ;
                     rdfs:subPropertyOf :isWorkOf ;
-                    rdfs:domain :HospitalAction ;
+                    owl:inverseOf :perform ;
+                    rdfs:domain :Procedure ;
                     rdfs:range :Hospital .
 
 
@@ -104,11 +104,25 @@
 :isWorkOf rdf:type owl:ObjectProperty .
 
 
-###  http://www.hospital.org/Ontologies/hospital.owl#admittedTo
-:admittedTo rdf:type owl:ObjectProperty ;
-            rdfs:subPropertyOf :hasWork ;
-            rdfs:domain :Patient ;
-            rdfs:range :Hospital .
+###  http://www.hospital.org/Ontologies.owl#perform
+:perform rdf:type owl:ObjectProperty ;
+         rdfs:subPropertyOf :hasWork ;
+         rdfs:domain :Hospital ;
+         rdfs:range :Procedure .
+
+
+###  http://www.hospital.org/Ontologies/hospital.owl#check
+:check rdf:type owl:ObjectProperty ;
+       rdfs:subPropertyOf :hasWork ;
+       rdfs:domain :LabrotaryStaff ;
+       rdfs:range :Conflict .
+
+
+###  http://www.hospital.org/Ontologies/hospital.owl#hasConcernOn
+:hasConcernOn rdf:type owl:ObjectProperty ;
+              rdfs:subPropertyOf :hasWork ;
+              rdfs:domain :Doctor ;
+              rdfs:range :Alert .
 
 
 #################################################################
@@ -153,7 +167,7 @@
 
 ###  http://www.hospital.org/Ontologies.owl#Addmitance
 :Addmitance rdf:type owl:Class ;
-            rdfs:subClassOf :HospitalAction .
+            rdfs:subClassOf :Procedure .
 
 
 ###  http://www.hospital.org/Ontologies.owl#Alert
@@ -214,7 +228,7 @@
 
 ###  http://www.hospital.org/Ontologies.owl#Discharge
 :Discharge rdf:type owl:Class ;
-           rdfs:subClassOf :HospitalAction .
+           rdfs:subClassOf :Procedure .
 
 
 ###  http://www.hospital.org/Ontologies.owl#Doctor
@@ -249,56 +263,6 @@
 
 ###  http://www.hospital.org/Ontologies.owl#Event
 :Event rdf:type owl:Class .
-
-
-###  http://www.hospital.org/Ontologies.owl#ForProfitHospital
-:ForProfitHospital rdf:type owl:Class ;
-                   rdfs:subClassOf :NamedHospital ,
-                                   [ rdf:type owl:Restriction ;
-                                     owl:onProperty :hasServices ;
-                                     owl:someValuesFrom :Anesthesiology
-                                   ] ,
-                                   [ rdf:type owl:Restriction ;
-                                     owl:onProperty :hasServices ;
-                                     owl:someValuesFrom :CancerCenter
-                                   ] ,
-                                   [ rdf:type owl:Restriction ;
-                                     owl:onProperty :hasServices ;
-                                     owl:someValuesFrom :Cardiology
-                                   ] ,
-                                   [ rdf:type owl:Restriction ;
-                                     owl:onProperty :hasServices ;
-                                     owl:someValuesFrom :Emergency
-                                   ] ,
-                                   [ rdf:type owl:Restriction ;
-                                     owl:onProperty :hasServices ;
-                                     owl:someValuesFrom :InfantService
-                                   ] ,
-                                   [ rdf:type owl:Restriction ;
-                                     owl:onProperty :hasServices ;
-                                     owl:someValuesFrom :IntensiveCare
-                                   ] ,
-                                   [ rdf:type owl:Restriction ;
-                                     owl:onProperty :hasServices ;
-                                     owl:someValuesFrom :Radiology
-                                   ] ,
-                                   [ rdf:type owl:Restriction ;
-                                     owl:onProperty :hasServices ;
-                                     owl:someValuesFrom :Surgery
-                                   ] ,
-                                   [ rdf:type owl:Restriction ;
-                                     owl:onProperty :hasEvents ;
-                                     owl:allValuesFrom :ChargeFee
-                                   ] ,
-                                   [ rdf:type owl:Restriction ;
-                                     owl:onProperty :hasPolicy ;
-                                     owl:allValuesFrom :GroupOfPeople
-                                   ] ,
-                                   [ rdf:type owl:Restriction ;
-                                     owl:onProperty :hasPolicy ;
-                                     owl:allValuesFrom :ProfitEarning
-                                   ] ;
-                   rdfs:comment "A hospital which does not expect a profit." .
 
 
 ###  http://www.hospital.org/Ontologies.owl#Government
@@ -349,21 +313,17 @@
 ###  http://www.hospital.org/Ontologies.owl#Hospital
 :Hospital rdf:type owl:Class ;
           rdfs:subClassOf [ rdf:type owl:Restriction ;
-                            owl:onProperty :hasHospitalAction ;
-                            owl:someValuesFrom :HospitalAction
-                          ] ,
-                          [ rdf:type owl:Restriction ;
                             owl:onProperty :hasPeople ;
                             owl:someValuesFrom :People
                           ] ,
                           [ rdf:type owl:Restriction ;
                             owl:onProperty :hasPhysicalResources ;
                             owl:someValuesFrom :PhysicalResource
+                          ] ,
+                          [ rdf:type owl:Restriction ;
+                            owl:onProperty :perform ;
+                            owl:someValuesFrom :Procedure
                           ] .
-
-
-###  http://www.hospital.org/Ontologies.owl#HospitalAction
-:HospitalAction rdf:type owl:Class .
 
 
 ###  http://www.hospital.org/Ontologies.owl#ICU
@@ -487,16 +447,6 @@
 :Policy rdf:type owl:Class .
 
 
-###  http://www.hospital.org/Ontologies.owl#PostTest
-:PostTest rdf:type owl:Class ;
-          rdfs:subClassOf :Test .
-
-
-###  http://www.hospital.org/Ontologies.owl#PreTest
-:PreTest rdf:type owl:Class ;
-         rdfs:subClassOf :Test .
-
-
 ###  http://www.hospital.org/Ontologies.owl#PrivateHospital
 :PrivateHospital rdf:type owl:Class ;
                  owl:equivalentClass [ owl:intersectionOf ( :Hospital
@@ -515,7 +465,57 @@
                                                           ) ;
                                        rdf:type owl:Class
                                      ] ;
-                 rdfs:comment "A hospital which charge fee for every hospital facility" .
+                 rdfs:subClassOf :NamedHospital ,
+                                 [ rdf:type owl:Restriction ;
+                                   owl:onProperty :hasServices ;
+                                   owl:someValuesFrom :Anesthesiology
+                                 ] ,
+                                 [ rdf:type owl:Restriction ;
+                                   owl:onProperty :hasServices ;
+                                   owl:someValuesFrom :CancerCenter
+                                 ] ,
+                                 [ rdf:type owl:Restriction ;
+                                   owl:onProperty :hasServices ;
+                                   owl:someValuesFrom :Cardiology
+                                 ] ,
+                                 [ rdf:type owl:Restriction ;
+                                   owl:onProperty :hasServices ;
+                                   owl:someValuesFrom :Emergency
+                                 ] ,
+                                 [ rdf:type owl:Restriction ;
+                                   owl:onProperty :hasServices ;
+                                   owl:someValuesFrom :InfantService
+                                 ] ,
+                                 [ rdf:type owl:Restriction ;
+                                   owl:onProperty :hasServices ;
+                                   owl:someValuesFrom :IntensiveCare
+                                 ] ,
+                                 [ rdf:type owl:Restriction ;
+                                   owl:onProperty :hasServices ;
+                                   owl:someValuesFrom :Radiology
+                                 ] ,
+                                 [ rdf:type owl:Restriction ;
+                                   owl:onProperty :hasServices ;
+                                   owl:someValuesFrom :Surgery
+                                 ] ,
+                                 [ rdf:type owl:Restriction ;
+                                   owl:onProperty :hasEvents ;
+                                   owl:allValuesFrom :ChargeFee
+                                 ] ,
+                                 [ rdf:type owl:Restriction ;
+                                   owl:onProperty :hasPolicy ;
+                                   owl:allValuesFrom :GroupOfPeople
+                                 ] ,
+                                 [ rdf:type owl:Restriction ;
+                                   owl:onProperty :hasPolicy ;
+                                   owl:allValuesFrom :ProfitEarning
+                                 ] ;
+                 rdfs:comment "A hospital which charge fee for every hospital facility" ,
+                              "A hospital which does not expect a profit." .
+
+
+###  http://www.hospital.org/Ontologies.owl#Procedure
+:Procedure rdf:type owl:Class .
 
 
 ###  http://www.hospital.org/Ontologies.owl#ProfitEarning
@@ -685,17 +685,17 @@
 
 ###  http://www.hospital.org/Ontologies.owl#Test
 :Test rdf:type owl:Class ;
-      rdfs:subClassOf :HospitalAction .
+      rdfs:subClassOf :Procedure .
 
 
 ###  http://www.hospital.org/Ontologies.owl#Transfer
 :Transfer rdf:type owl:Class ;
-          rdfs:subClassOf :HospitalAction .
+          rdfs:subClassOf :Procedure .
 
 
 ###  http://www.hospital.org/Ontologies.owl#Treatment
 :Treatment rdf:type owl:Class ;
-           rdfs:subClassOf :HospitalAction .
+           rdfs:subClassOf :Procedure .
 
 
 ###  http://www.hospital.org/Ontologies.owl#Vehicle
@@ -826,18 +826,21 @@
 #################################################################
 
 ###  http://www.hospital.org/Ontologies.owl#Ambulance
-:Ambulance rdf:type owl:NamedIndividual .
+:Ambulance rdf:type owl:NamedIndividual ,
+                    :Vehicle .
 
 
 ###  http://www.hospital.org/Ontologies.owl#AnilJasinghe
-:AnilJasinghe rdf:type owl:NamedIndividual ;
+:AnilJasinghe rdf:type owl:NamedIndividual ,
+                       :Doctor ;
               :hasHospital :CastleStreetHospital ;
               :hasEmail "AnilJ@gmail.com"^^xsd:string ;
               :hasWardNumber 10 .
 
 
 ###  http://www.hospital.org/Ontologies.owl#AsiriHospital
-:AsiriHospital rdf:type owl:NamedIndividual ;
+:AsiriHospital rdf:type owl:NamedIndividual ,
+                        :PrivateHospital ;
                :hasBeds 1000 ;
                :hasHospitalChair "NimalSugathapala"^^xsd:string ;
                :isHospitalPhone 0334567895 ;
@@ -845,15 +848,18 @@
 
 
 ###  http://www.hospital.org/Ontologies.owl#CTScanner
-:CTScanner rdf:type owl:NamedIndividual .
+:CTScanner rdf:type owl:NamedIndividual ,
+                    :Equipment .
 
 
 ###  http://www.hospital.org/Ontologies.owl#Capsules
-:Capsules rdf:type owl:NamedIndividual .
+:Capsules rdf:type owl:NamedIndividual ,
+                   :Drug .
 
 
 ###  http://www.hospital.org/Ontologies.owl#CastleStreetHospital
-:CastleStreetHospital rdf:type owl:NamedIndividual ;
+:CastleStreetHospital rdf:type owl:NamedIndividual ,
+                               :WomenHospital ;
                       :hasBeds 1000 ;
                       :hasHospitalChair "LahiruMudalige"^^xsd:string ;
                       :isHospitalPhone 0337894561 ;
@@ -861,14 +867,16 @@
 
 
 ###  http://www.hospital.org/Ontologies.owl#ChamodiWarnakulasooriya
-:ChamodiWarnakulasooriya rdf:type owl:NamedIndividual ;
+:ChamodiWarnakulasooriya rdf:type owl:NamedIndividual ,
+                                  :Doctor ;
                          :hasHospital :NationalHospitalOfMentalHealth ;
                          :hasEmail "ChamodiW@gmail.com"^^xsd:string ;
                          :hasWardNumber 2 .
 
 
 ###  http://www.hospital.org/Ontologies.owl#DeSoysaHospital
-:DeSoysaHospital rdf:type owl:NamedIndividual ;
+:DeSoysaHospital rdf:type owl:NamedIndividual ,
+                          :TeachingHospital ;
                  :hasBeds 800 ;
                  :hasHospitalChair "ShanikaWanigasekaraArachchi"^^xsd:string ;
                  rdfs:comment "Womens' hospital" .
@@ -879,7 +887,8 @@
 
 
 ###  http://www.hospital.org/Ontologies.owl#DivisionalHospitalTypeB
-:DivisionalHospitalTypeB rdf:type owl:NamedIndividual ;
+:DivisionalHospitalTypeB rdf:type owl:NamedIndividual ,
+                                  :RuralHospital ;
                          :hasBeds 100 ;
                          :hasHospitalChair "LalithWeerathunga"^^xsd:string ;
                          :isHospitalPhone 0314567895 ;
@@ -887,7 +896,8 @@
 
 
 ###  http://www.hospital.org/Ontologies.owl#ECG
-:ECG rdf:type owl:NamedIndividual .
+:ECG rdf:type owl:NamedIndividual ,
+              :Equipment .
 
 
 ###  http://www.hospital.org/Ontologies.owl#EyePhysician
@@ -895,7 +905,8 @@
 
 
 ###  http://www.hospital.org/Ontologies.owl#HasiniJayasekara
-:HasiniJayasekara rdf:type owl:NamedIndividual ;
+:HasiniJayasekara rdf:type owl:NamedIndividual ,
+                           :Doctor ;
                   :hasEmail "HasiniJ@gmail.com"^^xsd:string ;
                   :hasWardNumber 23 .
 
@@ -905,50 +916,58 @@
 
 
 ###  http://www.hospital.org/Ontologies.owl#Inhalers
-:Inhalers rdf:type owl:NamedIndividual .
+:Inhalers rdf:type owl:NamedIndividual ,
+                   :Equipment .
 
 
 ###  http://www.hospital.org/Ontologies.owl#Injections
-:Injections rdf:type owl:NamedIndividual .
+:Injections rdf:type owl:NamedIndividual ,
+                     :Equipment .
 
 
 ###  http://www.hospital.org/Ontologies.owl#IsharaPerera
-:IsharaPerera rdf:type owl:NamedIndividual ;
+:IsharaPerera rdf:type owl:NamedIndividual ,
+                       :Doctor ;
               :hasHospital :DeSoysaHospital ;
               :hasEmail "IsharaP@gmail.com"^^xsd:string ;
               :hasWardNumber 36 .
 
 
 ###  http://www.hospital.org/Ontologies.owl#JamesAndrew
-:JamesAndrew rdf:type owl:NamedIndividual ;
+:JamesAndrew rdf:type owl:NamedIndividual ,
+                      :Doctor ;
              :hasHospital :LadyRidgwayHospital ;
              :hasEmail "JamesA@gmail.com"^^xsd:string ;
              :hasWardNumber 5 .
 
 
 ###  http://www.hospital.org/Ontologies.owl#KarapitiyaHospital
-:KarapitiyaHospital rdf:type owl:NamedIndividual ;
+:KarapitiyaHospital rdf:type owl:NamedIndividual ,
+                             :TeachingHospital ;
                     :hasBeds 1200 ;
                     :isHospitalPhone 0474561234 ;
                     rdfs:comment "Research" .
 
 
 ###  http://www.hospital.org/Ontologies.owl#LadyRidgwayHospital
-:LadyRidgwayHospital rdf:type owl:NamedIndividual ;
+:LadyRidgwayHospital rdf:type owl:NamedIndividual ,
+                              :WomenHospital ;
                      :hasBeds 2000 ;
                      :isHospitalPhone 0111234568 ;
                      rdfs:comment "Childrens' " .
 
 
 ###  http://www.hospital.org/Ontologies.owl#LakdiwaWikramasekaraAyurvedicHospital
-:LakdiwaWikramasekaraAyurvedicHospital rdf:type owl:NamedIndividual ;
+:LakdiwaWikramasekaraAyurvedicHospital rdf:type owl:NamedIndividual ,
+                                                :AyurvedicHospital ;
                                        :hasBeds 100 ;
                                        :isHospitalPhone 0332232456 ;
                                        rdfs:comment "Ayurvedic" .
 
 
 ###  http://www.hospital.org/Ontologies.owl#LankaHospital
-:LankaHospital rdf:type owl:NamedIndividual ;
+:LankaHospital rdf:type owl:NamedIndividual ,
+                        :PrivateHospital ;
                :hasBeds 900 ;
                :hasHospitalChair "ChathuraRajapaksha"^^xsd:string ;
                :isHospitalPhone 0114561238 ;
@@ -956,63 +975,74 @@
 
 
 ###  http://www.hospital.org/Ontologies.owl#Liquid
-:Liquid rdf:type owl:NamedIndividual .
+:Liquid rdf:type owl:NamedIndividual ,
+                 :Drug .
 
 
 ###  http://www.hospital.org/Ontologies.owl#MRIScanner
-:MRIScanner rdf:type owl:NamedIndividual .
+:MRIScanner rdf:type owl:NamedIndividual ,
+                     :Equipment .
 
 
 ###  http://www.hospital.org/Ontologies.owl#MalaniKetagoda
-:MalaniKetagoda rdf:type owl:NamedIndividual ;
+:MalaniKetagoda rdf:type owl:NamedIndividual ,
+                         :Patient ;
                 :hasAdmittedDate "2012-09-24"^^xsd:string .
 
 
 ###  http://www.hospital.org/Ontologies.owl#NationalHospitalOfMentalHealth
-:NationalHospitalOfMentalHealth rdf:type owl:NamedIndividual ;
+:NationalHospitalOfMentalHealth rdf:type owl:NamedIndividual ,
+                                         :PhychiatricHospital ;
                                 :hasBeds 1200 ;
                                 :isHospitalPhone 0573692584 ;
                                 rdfs:comment "Phychiatric" .
 
 
 ###  http://www.hospital.org/Ontologies.owl#PiyumiDissanayaka
-:PiyumiDissanayaka rdf:type owl:NamedIndividual ;
+:PiyumiDissanayaka rdf:type owl:NamedIndividual ,
+                            :Doctor ;
                    :hasHospital :LakdiwaWikramasekaraAyurvedicHospital ;
                    :hasEmail "piyumiD@gmail.com"^^xsd:string ;
                    :hasWardNumber 7 .
 
 
 ###  http://www.hospital.org/Ontologies.owl#PulseOximeter
-:PulseOximeter rdf:type owl:NamedIndividual .
+:PulseOximeter rdf:type owl:NamedIndividual ,
+                        :Equipment .
 
 
 ###  http://www.hospital.org/Ontologies.owl#SabadaKaluarachchi
-:SabadaKaluarachchi rdf:type owl:NamedIndividual ;
-                    :hasAdmittedDate "2020-01-25"^^xsd:string ,
-                                     "2020-09-24"^^xsd:string .
+:SabadaKaluarachchi rdf:type owl:NamedIndividual ,
+                             :Patient ;
+                    :hasAdmittedDate "2020-01-25"^^xsd:string .
 
 
 ###  http://www.hospital.org/Ontologies.owl#SarangaAlahapperuma
-:SarangaAlahapperuma rdf:type owl:NamedIndividual .
+:SarangaAlahapperuma rdf:type owl:NamedIndividual ,
+                              :Patient .
 
 
 ###  http://www.hospital.org/Ontologies.owl#SenakaBatasena
-:SenakaBatasena rdf:type owl:NamedIndividual ;
+:SenakaBatasena rdf:type owl:NamedIndividual ,
+                         :Patient ;
                 :hasAdmittedDate "2020-09-24"^^xsd:string .
 
 
 ###  http://www.hospital.org/Ontologies.owl#SethmaHospital
-:SethmaHospital rdf:type owl:NamedIndividual ;
+:SethmaHospital rdf:type owl:NamedIndividual ,
+                         <http://www.hospital.org/Ontologies/hospital.owl#Children'sHospital> ;
                 :hasHospitalChair "SethiminiIddamalgoda"^^xsd:string ;
                 :isHospitalPhone 0237418526 .
 
 
 ###  http://www.hospital.org/Ontologies.owl#Stethoscope
-:Stethoscope rdf:type owl:NamedIndividual .
+:Stethoscope rdf:type owl:NamedIndividual ,
+                      :Equipment .
 
 
 ###  http://www.hospital.org/Ontologies.owl#SunilMendis
-:SunilMendis rdf:type owl:NamedIndividual ;
+:SunilMendis rdf:type owl:NamedIndividual ,
+                      :LabrotaryStaff ;
              :hasHospital :TeachingHospitalPeradeniya ;
              :hasEmail "SunilM@gmail.com"^^xsd:string ;
              :hasWardNumber 9 .
@@ -1023,30 +1053,36 @@
 
 
 ###  http://www.hospital.org/Ontologies.owl#SurgeryEquipments
-:SurgeryEquipments rdf:type owl:NamedIndividual .
+:SurgeryEquipments rdf:type owl:NamedIndividual ,
+                            :Equipment .
 
 
 ###  http://www.hospital.org/Ontologies.owl#Tablet
-:Tablet rdf:type owl:NamedIndividual .
+:Tablet rdf:type owl:NamedIndividual ,
+                 :Equipment .
 
 
 ###  http://www.hospital.org/Ontologies.owl#TeachingHospitalPeradeniya
-:TeachingHospitalPeradeniya rdf:type owl:NamedIndividual ;
+:TeachingHospitalPeradeniya rdf:type owl:NamedIndividual ,
+                                     :ResearchHospital ;
                             :hasBeds 1200 ;
                             :isHospitalPhone 0992587531 ;
                             rdfs:comment "Teaching" .
 
 
 ###  http://www.hospital.org/Ontologies.owl#Thermometer
-:Thermometer rdf:type owl:NamedIndividual .
+:Thermometer rdf:type owl:NamedIndividual ,
+                      :Equipment .
 
 
 ###  http://www.hospital.org/Ontologies.owl#Ventilator
-:Ventilator rdf:type owl:NamedIndividual .
+:Ventilator rdf:type owl:NamedIndividual ,
+                     :Equipment .
 
 
 ###  http://www.hospital.org/Ontologies.owl#ZaharaMalhothra
-:ZaharaMalhothra rdf:type owl:NamedIndividual ;
+:ZaharaMalhothra rdf:type owl:NamedIndividual ,
+                          :Patient ;
                  :hasAdmittedDate "2020-04-21"^^xsd:string .
 
 
@@ -1080,10 +1116,10 @@
 [ rdf:type owl:AllDisjointClasses ;
   owl:members ( :Event
                 :Hospital
-                :HospitalAction
                 :People
                 :PhysicalResource
                 :Policy
+                :Procedure
                 :Service
               )
 ] .

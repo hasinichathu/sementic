@@ -217,8 +217,7 @@
 
 ###  http://www.hospital.org/Ontologies/hospital.owl#getExpertOpinionFrom
 
-<http://www.hospital.org/Ontologies/hospital.owl#getExpertOpinionFrom> rdf:type owl:ObjectProperty ,
-                                                                                owl:ReflexiveProperty ;
+<http://www.hospital.org/Ontologies/hospital.owl#getExpertOpinionFrom> rdf:type owl:ObjectProperty ;
                                                                        
                                                                        rdfs:range :Doctor ;
                                                                        
@@ -243,8 +242,7 @@
 
 ###  http://www.hospital.org/Ontologies/hospital.owl#knows
 
-<http://www.hospital.org/Ontologies/hospital.owl#knows> rdf:type owl:ObjectProperty ,
-                                                                 owl:ReflexiveProperty ;
+<http://www.hospital.org/Ontologies/hospital.owl#knows> rdf:type owl:ObjectProperty ;
                                                         
                                                         rdfs:domain :Patient ;
                                                         

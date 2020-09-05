@@ -1490,6 +1490,20 @@
 
 
 
+###  http://www.hospital.org/Ontologies/hospital.owl#AmalKodithuwakku
+
+<http://www.hospital.org/Ontologies/hospital.owl#AmalKodithuwakku> rdf:type :Nurse ,
+                                                                            owl:NamedIndividual .
+
+
+
+###  http://www.hospital.org/Ontologies/hospital.owl#AmaliDilesha
+
+<http://www.hospital.org/Ontologies/hospital.owl#AmaliDilesha> rdf:type :Nurse ,
+                                                                        owl:NamedIndividual .
+
+
+
 ###  http://www.hospital.org/Ontologies/hospital.owl#Ambulance
 
 <http://www.hospital.org/Ontologies/hospital.owl#Ambulance> rdf:type :Vehicle ,
@@ -1501,6 +1515,13 @@
 
 <http://www.hospital.org/Ontologies/hospital.owl#AppointmentSchedule> rdf:type :Schedule ,
                                                                                owl:NamedIndividual .
+
+
+
+###  http://www.hospital.org/Ontologies/hospital.owl#AshanPerera
+
+<http://www.hospital.org/Ontologies/hospital.owl#AshanPerera> rdf:type :Physiotherapist ,
+                                                                       owl:NamedIndividual .
 
 
 
@@ -1525,6 +1546,13 @@
 
 
 
+###  http://www.hospital.org/Ontologies/hospital.owl#DhammikaUdawtta
+
+<http://www.hospital.org/Ontologies/hospital.owl#DhammikaUdawtta> rdf:type :Nutritionalist ,
+                                                                           owl:NamedIndividual .
+
+
+
 ###  http://www.hospital.org/Ontologies/hospital.owl#EmergencyMedicalTreatment
 
 <http://www.hospital.org/Ontologies/hospital.owl#EmergencyMedicalTreatment> rdf:type :EmergencyService ,
@@ -1536,6 +1564,13 @@
 
 <http://www.hospital.org/Ontologies/hospital.owl#EmergencyUnit> rdf:type :Place ,
                                                                          owl:NamedIndividual .
+
+
+
+###  http://www.hospital.org/Ontologies/hospital.owl#EseraNirmani
+
+<http://www.hospital.org/Ontologies/hospital.owl#EseraNirmani> rdf:type :Nurse ,
+                                                                        owl:NamedIndividual .
 
 
 
@@ -1553,6 +1588,13 @@
 
 
 
+###  http://www.hospital.org/Ontologies/hospital.owl#ImalkaPerera
+
+<http://www.hospital.org/Ontologies/hospital.owl#ImalkaPerera> rdf:type :TechnicalOfficer ,
+                                                                        owl:NamedIndividual .
+
+
+
 ###  http://www.hospital.org/Ontologies/hospital.owl#Inhaler
 
 <http://www.hospital.org/Ontologies/hospital.owl#Inhaler> rdf:type :Drug ,
@@ -1567,10 +1609,38 @@
 
 
 
+###  http://www.hospital.org/Ontologies/hospital.owl#KamalaAriyadasa
+
+<http://www.hospital.org/Ontologies/hospital.owl#KamalaAriyadasa> rdf:type :LabrotaryStaff ,
+                                                                           owl:NamedIndividual .
+
+
+
+###  http://www.hospital.org/Ontologies/hospital.owl#KelumGamlath
+
+<http://www.hospital.org/Ontologies/hospital.owl#KelumGamlath> rdf:type :Physiotherapist ,
+                                                                        owl:NamedIndividual .
+
+
+
 ###  http://www.hospital.org/Ontologies/hospital.owl#Labrotary
 
 <http://www.hospital.org/Ontologies/hospital.owl#Labrotary> rdf:type :Place ,
                                                                      owl:NamedIndividual .
+
+
+
+###  http://www.hospital.org/Ontologies/hospital.owl#MalaJayanthi
+
+<http://www.hospital.org/Ontologies/hospital.owl#MalaJayanthi> rdf:type :Nurse ,
+                                                                        owl:NamedIndividual .
+
+
+
+###  http://www.hospital.org/Ontologies/hospital.owl#MalaniRenuka
+
+<http://www.hospital.org/Ontologies/hospital.owl#MalaniRenuka> rdf:type :LabrotaryStaff ,
+                                                                        owl:NamedIndividual .
 
 
 
@@ -1588,10 +1658,24 @@
 
 
 
+###  http://www.hospital.org/Ontologies/hospital.owl#ReshanThotawatta
+
+<http://www.hospital.org/Ontologies/hospital.owl#ReshanThotawatta> rdf:type :TechnicalOfficer ,
+                                                                            owl:NamedIndividual .
+
+
+
 ###  http://www.hospital.org/Ontologies/hospital.owl#ScanRoom
 
 <http://www.hospital.org/Ontologies/hospital.owl#ScanRoom> rdf:type :Place ,
                                                                     owl:NamedIndividual .
+
+
+
+###  http://www.hospital.org/Ontologies/hospital.owl#SumanaFonseka
+
+<http://www.hospital.org/Ontologies/hospital.owl#SumanaFonseka> rdf:type :Nutritionalist ,
+                                                                         owl:NamedIndividual .
 
 
 

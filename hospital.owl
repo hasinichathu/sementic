@@ -215,6 +215,19 @@
 
 
 
+###  http://www.hospital.org/Ontologies/hospital.owl#getExpertOpinionFrom
+
+<http://www.hospital.org/Ontologies/hospital.owl#getExpertOpinionFrom> rdf:type owl:ObjectProperty ,
+                                                                                owl:ReflexiveProperty ;
+                                                                       
+                                                                       rdfs:range :Doctor ;
+                                                                       
+                                                                       rdfs:domain :Doctor ;
+                                                                       
+                                                                       rdfs:subPropertyOf :hasWork .
+
+
+
 ###  http://www.hospital.org/Ontologies/hospital.owl#hasLessFatalityThan
 
 <http://www.hospital.org/Ontologies/hospital.owl#hasLessFatalityThan> rdf:type owl:ObjectProperty ,
@@ -225,6 +238,32 @@
                                                                       rdfs:domain :NamedHospital ;
                                                                       
                                                                       rdfs:subPropertyOf :hasWork .
+
+
+
+###  http://www.hospital.org/Ontologies/hospital.owl#knows
+
+<http://www.hospital.org/Ontologies/hospital.owl#knows> rdf:type owl:ObjectProperty ,
+                                                                 owl:ReflexiveProperty ;
+                                                        
+                                                        rdfs:domain :Patient ;
+                                                        
+                                                        rdfs:range :Patient ;
+                                                        
+                                                        rdfs:subPropertyOf :hasWork .
+
+
+
+###  http://www.hospital.org/Ontologies/hospital.owl#verifyResultFrom
+
+<http://www.hospital.org/Ontologies/hospital.owl#verifyResultFrom> rdf:type owl:IrreflexiveProperty ,
+                                                                            owl:ObjectProperty ;
+                                                                   
+                                                                   rdfs:domain :LabrotaryStaff ;
+                                                                   
+                                                                   rdfs:range :LabrotaryStaff ;
+                                                                   
+                                                                   rdfs:subPropertyOf :hasWork .
 
 
 

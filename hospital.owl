@@ -20,7 +20,8 @@
 
 ###  http://www.hospital.org/Ontologies.owl#admittedTo
 
-:admittedTo rdf:type owl:ObjectProperty ;
+:admittedTo rdf:type owl:FunctionalProperty ,
+                     owl:ObjectProperty ;
             
             rdfs:range :Hospital ;
             
@@ -33,7 +34,7 @@
 ###  http://www.hospital.org/Ontologies.owl#advicesTo
 
 :advicesTo rdf:type owl:ObjectProperty ,
-                    owl:TransitiveProperty ;
+                    owl:SymmetricProperty ;
            
            rdfs:domain :Doctor ;
            
@@ -45,7 +46,8 @@
 
 ###  http://www.hospital.org/Ontologies.owl#check
 
-:check rdf:type owl:ObjectProperty ;
+:check rdf:type owl:AsymmetricProperty ,
+                owl:ObjectProperty ;
        
        rdfs:range :Conflict ;
        
@@ -57,7 +59,8 @@
 
 ###  http://www.hospital.org/Ontologies.owl#hasConcernOn
 
-:hasConcernOn rdf:type owl:ObjectProperty ;
+:hasConcernOn rdf:type owl:AsymmetricProperty ,
+                       owl:ObjectProperty ;
               
               rdfs:range :Alert ;
               
@@ -69,7 +72,8 @@
 
 ###  http://www.hospital.org/Ontologies.owl#hasEvents
 
-:hasEvents rdf:type owl:ObjectProperty ;
+:hasEvents rdf:type owl:AsymmetricProperty ,
+                    owl:ObjectProperty ;
            
            rdfs:range :Event ;
            
@@ -94,7 +98,8 @@
 
 ###  http://www.hospital.org/Ontologies.owl#hasPeople
 
-:hasPeople rdf:type owl:ObjectProperty ;
+:hasPeople rdf:type owl:AsymmetricProperty ,
+                    owl:ObjectProperty ;
            
            rdfs:domain :Hospital ;
            
@@ -106,7 +111,8 @@
 
 ###  http://www.hospital.org/Ontologies.owl#hasPhysicalResources
 
-:hasPhysicalResources rdf:type owl:ObjectProperty ;
+:hasPhysicalResources rdf:type owl:AsymmetricProperty ,
+                               owl:ObjectProperty ;
                       
                       rdfs:domain :Hospital ;
                       
@@ -118,7 +124,8 @@
 
 ###  http://www.hospital.org/Ontologies.owl#hasPolicy
 
-:hasPolicy rdf:type owl:ObjectProperty ;
+:hasPolicy rdf:type owl:AsymmetricProperty ,
+                    owl:ObjectProperty ;
            
            rdfs:domain :Hospital ;
            
@@ -132,7 +139,8 @@
 
 ###  http://www.hospital.org/Ontologies.owl#hasServices
 
-:hasServices rdf:type owl:ObjectProperty ;
+:hasServices rdf:type owl:AsymmetricProperty ,
+                      owl:ObjectProperty ;
              
              rdfs:domain :Hospital ;
              
@@ -196,13 +204,27 @@
 
 ###  http://www.hospital.org/Ontologies.owl#perform
 
-:perform rdf:type owl:ObjectProperty ;
+:perform rdf:type owl:AsymmetricProperty ,
+                  owl:ObjectProperty ;
          
          rdfs:domain :Hospital ;
          
          rdfs:range :Procedure ;
          
          rdfs:subPropertyOf :hasWork .
+
+
+
+###  http://www.hospital.org/Ontologies/hospital.owl#hasLessFatalityThan
+
+<http://www.hospital.org/Ontologies/hospital.owl#hasLessFatalityThan> rdf:type owl:ObjectProperty ,
+                                                                               owl:TransitiveProperty ;
+                                                                      
+                                                                      rdfs:range :NamedHospital ;
+                                                                      
+                                                                      rdfs:domain :NamedHospital ;
+                                                                      
+                                                                      rdfs:subPropertyOf :hasWork .
 
 
 

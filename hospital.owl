@@ -158,17 +158,17 @@
 
 
 
-###  http://www.hospital.org/Ontologies.owl#isHospitalActionOf
+###  http://www.hospital.org/Ontologies.owl#isPerformedBy
 
-:isHospitalActionOf rdf:type owl:ObjectProperty ;
-                    
-                    rdfs:range :Hospital ;
-                    
-                    rdfs:domain :Procedure ;
-                    
-                    rdfs:subPropertyOf :isWorkOf ;
-                    
-                    owl:inverseOf :perform .
+:isPerformedBy rdf:type owl:ObjectProperty ;
+               
+               rdfs:range :Hospital ;
+               
+               rdfs:domain :Procedure ;
+               
+               rdfs:subPropertyOf :isWorkOf ;
+               
+               owl:inverseOf :perform .
 
 
 
@@ -217,7 +217,8 @@
 
 ###  http://www.hospital.org/Ontologies/hospital.owl#getExpertOpinionFrom
 
-<http://www.hospital.org/Ontologies/hospital.owl#getExpertOpinionFrom> rdf:type owl:ObjectProperty ;
+<http://www.hospital.org/Ontologies/hospital.owl#getExpertOpinionFrom> rdf:type owl:ObjectProperty ,
+                                                                                owl:SymmetricProperty ;
                                                                        
                                                                        rdfs:range :Doctor ;
                                                                        
